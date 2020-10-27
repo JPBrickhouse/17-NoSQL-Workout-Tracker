@@ -24,14 +24,13 @@ app.use(express.json());
 // Sets up the Express app to handle static files
 app.use(express.static("public"));
 
-// MONGO
+// MONGOOSE CONNECT
 
 
 
 
-// ROUTES
-
-
+// Routes
+app.use(require("./routes/apiRoutes.js"))
 
 // Starts the server and has it listening on the respective port
 app.listen(PORT, () => {
