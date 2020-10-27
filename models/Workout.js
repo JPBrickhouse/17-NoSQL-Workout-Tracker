@@ -8,16 +8,41 @@ const Schema = mongoose.Schema;
 // Each schema maps to a MongoDB collection and defines
 // the shape of the documents within that collection."
 const WorkoutSchema = new Schema ({
-
+    day: {
+        type: Date
+    },
+    exercises: [
+        {
+            type: {
+                type: String
+            },
+            name: {
+                type: String,
+                trim: true,
+            },
+            duration: {
+                type: Number
+            },
+            distance: {
+                type: Number
+            },
+            weight: {
+                type: Number
+            },
+            reps: {
+                type: Number
+            },
+            sets: {
+                type: Number
+            }
+        }
+    ]
 });
-
-
 
 // Adding a method to the WorkoutSchema
 
 
 
+// Exporting the WorkoutSchema as a model
 const Workout = mongoose.model("Workout",WorkoutSchema);
-
-
 module.exports = Workout;
