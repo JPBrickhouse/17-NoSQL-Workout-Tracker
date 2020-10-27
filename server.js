@@ -24,13 +24,18 @@ app.use(express.json());
 // Sets up the Express app to handle static files
 app.use(express.static("public"));
 
-// MONGOOSE CONNECT
+// Connecting to the "workout" MongoDB database with Mongoose
+// "Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment."
+// "Mongoose supports both promises and callbacks."
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 
-
-
-
-// Routes
-app.use(require("./routes/apiRoutes.js"))
+// HTML Routes
+app.use(require("./routes/html-routes.js"))
+// API Routes
+app.use(require("./routes/api-routes.js"))
 
 // Starts the server and has it listening on the respective port
 app.listen(PORT, () => {
