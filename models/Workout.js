@@ -9,7 +9,8 @@ const Schema = mongoose.Schema;
 // the shape of the documents within that collection."
 const WorkoutSchema = new Schema ({
     day: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     exercises: [
         {
