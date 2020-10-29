@@ -1,9 +1,9 @@
+// ----------------------------------------------------------------
 // Getting the models
 const db = require("../models");
-
+// ----------------------------------------------------------------
 // Importing the Router method from Express
 const router = require("express").Router()
-
 // ----------------------------------------------------------------
 // GET route to GET the last workout
 router.get("/api/workouts", (req, res) => {
@@ -69,10 +69,18 @@ router.post("/api/workouts", (req, res) => {
 });
 // ----------------------------------------------------------------
 // GET route to GET workouts in a range
-// router.get("/api/workouts/range", (req, res) => {
-
-// });
-
-
+router.get("/api/workouts/range", (req, res) => {
+    // This syntax gets ALL the workouts! And then the code in
+    // public/stats.js actually parses it to display
+    db.Workout.find({})
+        .then(dbWorkout => {
+            res.json(dbWorkout)
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
+// ----------------------------------------------------------------
 // Exporting all the routes back up to the server
 module.exports = router;
+// ----------------------------------------------------------------
